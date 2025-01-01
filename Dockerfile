@@ -28,13 +28,21 @@ WORKDIR /var/www
 COPY . .
 
 # Install dependencies
-RUN composer install
+RUN composer install --no-dev --optimize-autoloader
 RUN npm install
 RUN npm run build
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www
+# Set up storage directory
+RUN mkdir -p storage/framework/{sessions,views,cache}
+RUN chmod -R 775 storage bootstrap/cache
+RUN chown -R www-data:www-data storage bootstrap/cache
+
+# Generate application key if not exists
+RUN php artisan key:generate --force
 
 EXPOSE 8000
 
-CMD php artisan serve --host=0.0.0.0 --port=$PORT 
+CMD php artisan config:cache && \
+    php artisan route:cache && \
+    php artisan view:cache && \
+    php artisan serve --host=0.0.0.0 --port=$PORT 
