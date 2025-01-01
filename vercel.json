@@ -6,9 +6,7 @@
         }
     },
     "outputDirectory": "public",
-    "buildCommand": "npm run build",
-    "devCommand": "npm run dev",
-    "installCommand": "npm install && composer install",
+    "buildCommand": "bash ./build.sh",
     "routes": [
         {
             "src": "/build/(.*)",
