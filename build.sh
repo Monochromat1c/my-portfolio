@@ -6,10 +6,14 @@ set -e
 echo "Creating directories..."
 # Create required directories
 mkdir -p storage/framework/{sessions,views,cache}
-chmod -R 777 storage
+mkdir -p storage/logs
 mkdir -p bootstrap/cache
+mkdir -p public/{build,css,js,images}
+
+echo "Setting permissions..."
+# Set proper permissions
+chmod -R 777 storage
 chmod -R 777 bootstrap/cache
-mkdir -p public/{build,css,js}
 chmod -R 777 public
 
 echo "Installing frontend dependencies..."
@@ -25,5 +29,11 @@ echo "Moving build output..."
 if [ -d "dist" ]; then
     cp -r dist/* public/
 fi
+
+echo "Optimizing Laravel..."
+# Optimize Laravel for production
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
 
 echo "Build completed successfully!" 

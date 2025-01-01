@@ -46,6 +46,13 @@
         "VIEW_COMPILED_PATH": "/tmp",
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
-        "SESSION_DRIVER": "cookie"
+        "SESSION_DRIVER": "cookie",
+        "SESSION_LIFETIME": "120",
+        "MAIL_MAILER": "smtp",
+        "MAIL_HOST": "smtp.gmail.com",
+        "MAIL_PORT": "587",
+        "MAIL_ENCRYPTION": "tls",
+        "MAIL_FROM_ADDRESS": "charlesdiestro6@gmail.com",
+        "MAIL_FROM_NAME": "Charles Diestro"
     }
 } 

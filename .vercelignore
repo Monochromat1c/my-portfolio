@@ -8,4 +8,13 @@
 .gitattributes
 .idea
 .vscode
-/storage/*.key 
+/storage/*.key
+/bootstrap/cache/*
+.phpunit.result.cache
+/public/hot
+/public/storage
+docker-compose.yml
+phpunit.xml
+README.md
+composer.lock
+package-lock.json 
