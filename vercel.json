@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "framework": "vite",
+    "framework": null,
     "buildCommand": "bash ./build.sh",
     "outputDirectory": "public",
     "functions": {
@@ -38,6 +38,7 @@
         "APP_ENV": "production",
         "APP_DEBUG": "false",
         "APP_URL": "${VERCEL_URL}",
+        "APP_TIMEZONE": "UTC",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
@@ -53,6 +54,7 @@
         "MAIL_PORT": "587",
         "MAIL_ENCRYPTION": "tls",
         "MAIL_FROM_ADDRESS": "charlesdiestro6@gmail.com",
-        "MAIL_FROM_NAME": "Charles Diestro"
+        "MAIL_FROM_NAME": "Charles Diestro",
+        "ASSET_URL": "${VERCEL_URL}"
     }
 } 

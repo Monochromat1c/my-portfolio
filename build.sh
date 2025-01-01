@@ -30,10 +30,4 @@ if [ -d "dist" ]; then
     cp -r dist/* public/
 fi
 
-echo "Optimizing Laravel..."
-# Optimize Laravel for production
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
-
 echo "Build completed successfully!" 
