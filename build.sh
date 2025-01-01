@@ -9,6 +9,10 @@ npm install
 echo "Running npm run build..."
 npm run build
 
+echo "Creating storage directories..."
+mkdir -p storage/framework/{sessions,views,cache}
+chmod -R 777 storage
+
 echo "Generating application key..."
 php artisan key:generate
 
@@ -19,4 +23,7 @@ echo "Caching routes..."
 php artisan route:cache
 
 echo "Caching views..."
-php artisan view:cache 
+php artisan view:cache
+
+echo "Ensuring public directory exists..."
+mkdir -p public/build 

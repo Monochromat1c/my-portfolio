@@ -8,14 +8,40 @@
     },
     "routes": [
         {
+            "src": "/build/(.*)",
+            "dest": "/public/build/$1"
+        },
+        {
+            "src": "/favicon.ico",
+            "dest": "/public/favicon.ico"
+        },
+        {
+            "src": "/robots.txt",
+            "dest": "/public/robots.txt"
+        },
+        {
+            "src": "/(css|js|images|fonts)/(.*)",
+            "dest": "/public/$1/$2"
+        },
+        {
             "src": "/(.*)",
             "dest": "/api/index.php"
+        }
+    ],
+    "builds": [
+        {
+            "src": "api/index.php",
+            "use": "vercel-php@0.6.0"
+        },
+        {
+            "src": "public/**",
+            "use": "@vercel/static"
         }
     ],
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "false",
-        "APP_URL": "https://yourproductionurl.com",
+        "APP_URL": "${VERCEL_URL}",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
