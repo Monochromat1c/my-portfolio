@@ -12,6 +12,8 @@
             "dest": "/api/index.php"
         }
     ],
+    "buildCommand": "npm install && npm run build",
+    "outputDirectory": "public",
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "false",
