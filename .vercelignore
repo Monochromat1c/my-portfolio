@@ -6,5 +6,6 @@
 .git
 .gitignore
 .gitattributes
-README.md
+.idea
+.vscode
 /storage/*.key 
