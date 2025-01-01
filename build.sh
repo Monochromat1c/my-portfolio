@@ -1,21 +1,24 @@
 #!/bin/bash
 
-# Install PHP dependencies
+# Install dependencies
 composer install --no-dev --optimize-autoloader
+npm install
 
-# Create storage directory structure
+# Create required directories
 mkdir -p storage/framework/{sessions,views,cache}
 chmod -R 777 storage
 mkdir -p bootstrap/cache
 chmod -R 777 bootstrap/cache
-
-# Install and build frontend assets
-npm ci
-npm run build
-
-# Ensure public directory exists with proper permissions
 mkdir -p public/build
 chmod -R 777 public
+
+# Build frontend assets
+npm run build
+
+# Move build output to public directory
+if [ -d "dist" ]; then
+    cp -r dist/* public/
+fi
 
 # Laravel caching
 php artisan config:cache
