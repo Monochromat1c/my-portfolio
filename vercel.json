@@ -1,27 +1,57 @@
 {
     "version": 2,
-    "buildCommand": "npm install && npm run build",
-    "outputDirectory": "public",
+    "framework": "laravel",
+    "builds": [
+        {
+            "src": "api/index.php",
+            "use": "vercel-php@0.6.0"
+        },
+        {
+            "src": "public/**",
+            "use": "@vercel/static"
+        }
+    ],
     "routes": [
         {
             "src": "/build/(.*)",
-            "dest": "/build/$1"
-        },
-        {
-            "src": "/(css|js)/(.*)",
-            "dest": "/$1/$2"
+            "dest": "/public/build/$1",
+            "headers": {
+                "Cache-Control": "public, max-age=31556952, immutable"
+            }
         },
         {
             "src": "/favicon.ico",
-            "dest": "/favicon.ico"
+            "dest": "/public/favicon.ico"
         },
         {
             "src": "/robots.txt",
-            "dest": "/robots.txt"
+            "dest": "/public/robots.txt"
+        },
+        {
+            "src": "/(css|js|images)/(.*)",
+            "dest": "/public/$1/$2"
         },
         {
             "src": "/(.*)",
-            "dest": "/index.html"
+            "dest": "/api/index.php"
         }
-    ]
+    ],
+    "env": {
+        "APP_NAME": "Laravel",
+        "APP_ENV": "production",
+        "APP_DEBUG": "false",
+        "APP_URL": "${VERCEL_URL}",
+        "APP_CONFIG_CACHE": "/tmp/config.php",
+        "APP_EVENTS_CACHE": "/tmp/events.php",
+        "APP_PACKAGES_CACHE": "/tmp/packages.php",
+        "APP_ROUTES_CACHE": "/tmp/routes.php",
+        "APP_SERVICES_CACHE": "/tmp/services.php",
+        "VIEW_COMPILED_PATH": "/tmp",
+        "CACHE_DRIVER": "array",
+        "LOG_CHANNEL": "stderr",
+        "SESSION_DRIVER": "cookie",
+        "VIEW_COMPILED_PATH": "/tmp/views",
+        "SSR_TEMP_PATH": "/tmp/ssr",
+        "NODE_PATH": "node"
+    }
 } 
