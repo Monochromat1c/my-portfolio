@@ -3,7 +3,7 @@
     "builds": [
         {
             "src": "/api/index.php",
-            "use": "vercel-php@0.6.0"
+            "use": "vercel-php@0.7.0"
         },
         {
             "src": "public/**",
@@ -44,6 +44,7 @@
         "VIEW_COMPILED_PATH": "/tmp",
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
-        "SESSION_DRIVER": "cookie"
+        "SESSION_DRIVER": "cookie",
+        "PHP_VERSION": "8.2"
     }
 } 
