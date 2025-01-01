@@ -1,60 +1,22 @@
 {
     "version": 2,
-    "framework": null,
-    "buildCommand": "bash ./build.sh",
-    "outputDirectory": "public",
     "functions": {
-        "api/*.php": {
-            "runtime": "vercel-php@0.5.0"
+        "api/index.php": {
+            "runtime": "vercel-php@0.6.0"
         }
     },
     "routes": [
-        {
-            "src": "/build/(.*)",
-            "dest": "/build/$1",
-            "headers": {
-                "Cache-Control": "public, max-age=31556952, immutable"
-            }
-        },
-        {
-            "src": "/(css|js|images)/(.*)",
-            "dest": "/$1/$2"
-        },
-        {
-            "src": "/favicon.ico",
-            "dest": "/favicon.ico"
-        },
-        {
-            "src": "/robots.txt",
-            "dest": "/robots.txt"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "/api/index.php"
-        }
+        { "src": "/(.*)", "dest": "/api/index.php" }
     ],
     "env": {
         "APP_NAME": "Laravel",
         "APP_ENV": "production",
         "APP_DEBUG": "false",
         "APP_URL": "${VERCEL_URL}",
-        "APP_TIMEZONE": "UTC",
-        "APP_CONFIG_CACHE": "/tmp/config.php",
-        "APP_EVENTS_CACHE": "/tmp/events.php",
-        "APP_PACKAGES_CACHE": "/tmp/packages.php",
-        "APP_ROUTES_CACHE": "/tmp/routes.php",
-        "APP_SERVICES_CACHE": "/tmp/services.php",
-        "VIEW_COMPILED_PATH": "/tmp",
+        "APP_KEY": "base64:dseW7Tr2fxCYTyJJr2vCWaMwJPLMWR8BQVh9oktBIew=",
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie",
-        "SESSION_LIFETIME": "120",
-        "MAIL_MAILER": "smtp",
-        "MAIL_HOST": "smtp.gmail.com",
-        "MAIL_PORT": "587",
-        "MAIL_ENCRYPTION": "tls",
-        "MAIL_FROM_ADDRESS": "charlesdiestro6@gmail.com",
-        "MAIL_FROM_NAME": "Charles Diestro",
-        "ASSET_URL": "${VERCEL_URL}"
+        "VIEW_COMPILED_PATH": "/tmp"
     }
 } 
