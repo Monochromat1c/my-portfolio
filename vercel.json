@@ -1,35 +1,32 @@
 {
     "version": 2,
     "framework": "laravel",
-    "builds": [
-        {
-            "src": "api/index.php",
-            "use": "vercel-php@0.6.0"
-        },
-        {
-            "src": "public/**",
-            "use": "@vercel/static"
+    "buildCommand": "bash ./build.sh",
+    "outputDirectory": "public",
+    "functions": {
+        "api/*.php": {
+            "runtime": "vercel-php@0.6.0"
         }
-    ],
+    },
     "routes": [
         {
             "src": "/build/(.*)",
-            "dest": "/public/build/$1",
+            "dest": "/build/$1",
             "headers": {
                 "Cache-Control": "public, max-age=31556952, immutable"
             }
         },
         {
+            "src": "/(css|js|images)/(.*)",
+            "dest": "/$1/$2"
+        },
+        {
             "src": "/favicon.ico",
-            "dest": "/public/favicon.ico"
+            "dest": "/favicon.ico"
         },
         {
             "src": "/robots.txt",
-            "dest": "/public/robots.txt"
-        },
-        {
-            "src": "/(css|js|images)/(.*)",
-            "dest": "/public/$1/$2"
+            "dest": "/robots.txt"
         },
         {
             "src": "/(.*)",
@@ -49,9 +46,6 @@
         "VIEW_COMPILED_PATH": "/tmp",
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
-        "SESSION_DRIVER": "cookie",
-        "VIEW_COMPILED_PATH": "/tmp/views",
-        "SSR_TEMP_PATH": "/tmp/ssr",
-        "NODE_PATH": "node"
+        "SESSION_DRIVER": "cookie"
     }
 } 
